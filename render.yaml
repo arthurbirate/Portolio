@@ -20,6 +20,3 @@ services:
       - key: CLOUDINARY_URL
         sync: false # Set this manually in the dashboard
 
-databases:
-  - name: portfolio_db
-    plan: free
