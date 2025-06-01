@@ -1,0 +1,108 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="w-full pt-20 font-serif bg-gradient-to-br from-blue-50 via-white to-teal-100 animate-fade-in-up">
+
+  <div class="max-w-6xl mx-auto shadow-2xl rounded-3xl p-10 border border-teal-200 bg-white">
+
+    <div class="flex items-center justify-between mb-10 px-8">
+      <div>
+        <h1 class="text-4xl font-extrabold text-teal-700 tracking-tight">{{ internship.title }}</h1>
+        <p class="text-gray-600 mt-2 text-lg">{{ internship.company_name }} &bull; {{ internship.period }}</p>
+      </div>
+    </div>
+
+    <section class="mb-10 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Description</h2>
+      <p class="text-gray-700 leading-relaxed whitespace-pre-line">{{ internship.description|default:"No description provided." }}</p>
+    </section>
+
+    <section class="mb-10 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Tasks</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 list-disc list-inside">
+        {% for task in internship.get_tasks_list %}
+          <li class="bg-teal-50 px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-teal-100 transition duration-300">{{ task }}</li>
+        {% empty %}
+          <li class="text-gray-500 italic">No tasks provided.</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="mb-10 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Tools & Technologies</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 list-disc list-inside">
+        {% for tool in internship.get_tools_list %}
+          <li class="bg-teal-50 px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-teal-100 transition duration-300">{{ tool }}</li>
+        {% empty %}
+          <li class="text-gray-500 italic">No tools listed.</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="mb-10 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Key Contributions</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 list-disc list-inside">
+        {% for contribution in internship.get_contributions_list %}
+          <li class="bg-teal-50 px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-teal-100 transition duration-300">{{ contribution }}</li>
+        {% empty %}
+          <li class="text-gray-500 italic">No contributions recorded.</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="mb-10 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Achievements</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 list-disc list-inside">
+        {% for achievement in internship.get_achievements_list %}
+          <li class="bg-teal-50 px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-teal-100 transition duration-300">{{ achievement }}</li>
+        {% empty %}
+          <li class="text-gray-500 italic">No achievements listed.</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="mb-10 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Technical Reflection</h2>
+      <div class="bg-gray-50 p-6 rounded-xl text-gray-700 shadow-inner whitespace-pre-line">
+        {{ internship.technical_reflection }}
+      </div>
+    </section>
+
+    <section class="mb-10 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Personal Reflection</h2>
+      <div class="bg-gray-50 p-6 rounded-xl text-gray-700 shadow-inner whitespace-pre-line">
+        {{ internship.personal_reflection }}
+      </div>
+    </section>
+
+    <section class="mt-12 px-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Download Documents</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="{% static 'docs/project_plan.pdf' %}" download class="bg-teal-600 hover:bg-teal-700 text-white text-center font-semibold py-3 rounded-xl shadow-md transition">Project Plan</a>
+        <a href="{% static 'docs/Birate_kabanza_realisation document_Final.pdf' %}" download class="bg-emerald-600 hover:bg-emerald-700 text-white text-center font-semibold py-3 rounded-xl shadow-md transition">Realization Document</a>
+        <a href="{% static 'docs/Birate Kabanza Arthur personal reflection(VGP).pdf' %}" download class="bg-cyan-600 hover:bg-cyan-700 text-white text-center font-semibold py-3 rounded-xl shadow-md transition">Personal Reflection</a>
+        <a href="{% static 'docs/BIrate kabanza Arthur Technical Reflection (VGP)_.pdf' %}" download class="bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-3 rounded-xl shadow-md transition">Technical Reflection</a>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<style>
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out both;
+}
+</style>
+
+{% endblock content %}

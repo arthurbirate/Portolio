@@ -1,0 +1,40 @@
+<nav class="bg-white shadow-md fixed w-full z-50 animate-fadeInNav">
+    <div class="container mx-auto px-6 py-4 flex justify-center flex-wrap gap-6 sm:gap-12 text-lg font-semibold text-gray-800 font-serif tracking-wide select-none">
+  
+      <a href="{% url 'home' %}"
+         class="relative group transition duration-300 ease-in-out hover:text-emerald-600 hover:scale-105">
+        Home
+        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-emerald-600 rounded-full transition-all duration-500 group-hover:w-full"></span>
+      </a>
+  
+      <a href="{% url 'about_me' %}"
+         class="relative group transition duration-300 ease-in-out hover:text-emerald-600 hover:scale-105">
+        About Me
+        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-emerald-600 rounded-full transition-all duration-500 group-hover:w-full"></span>
+      </a>
+  
+      <a href="{% url 'internship' %}"
+         class="relative group transition duration-300 ease-in-out hover:text-emerald-600 hover:scale-105">
+        Internship
+        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-emerald-600 rounded-full transition-all duration-500 group-hover:w-full"></span>
+      </a>
+  
+      <a href="{% url 'projects' %}"
+         class="relative group transition duration-300 ease-in-out hover:text-emerald-600 hover:scale-105">
+        Projects & Achievements
+        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-emerald-600 rounded-full transition-all duration-500 group-hover:w-full"></span>
+      </a>
+  
+    </div>
+  </nav>
+  
+  <style>
+    @keyframes fadeInNav {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInNav {
+      animation: fadeInNav 1s ease forwards;
+    }
+  </style>
+  

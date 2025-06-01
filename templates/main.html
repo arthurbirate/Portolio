@@ -1,0 +1,27 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Portfolio{% endblock title %}</title>
+    {% tailwind_css %}
+</head>
+<body class="bg-gradient-to-br from-slate-100 via-white to-slate-200 min-h-screen font-serif text-gray-800 tracking-tight">
+
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-grow w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-600">
+        © {{ now.year }} Birate Kabanza Arthur — All Rights Reserved.
+    </footer>
+
+</body>
+</html>

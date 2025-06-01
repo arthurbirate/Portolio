@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="w-full pt-20 font-serif bg-gradient-to-br from-blue-50 via-white to-emerald-100 animate-fade-in-up">
+  <div class="max-w-6xl mx-auto px-6 py-10">
+
+    <h1 class="text-5xl font-extrabold text-center text-emerald-800 mb-12 tracking-tight">Projects</h1>
+
+    {% for project in projects %}
+    <div class="mb-20 p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition duration-300">
+
+      <!-- Title -->
+      <h2 class="text-3xl font-bold text-emerald-700 mb-6">{{ project.title }}</h2>
+
+      <!-- Objective -->
+      <section class="mb-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Objective</h3>
+        <p class="text-gray-700">{{ project.objective }}</p>
+      </section>
+
+      <!-- Sample Image(s) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {% if project.image1 %}
+          <img src="{{ project.image1.url }}"
+               class="rounded-xl shadow-md object-cover w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[30rem]"
+               alt="Project Image 1">
+        {% endif %}
+      
+        {% if project.image2 %}
+          <img src="{{ project.image2.url }}"
+               class="rounded-xl shadow-md object-cover w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[30rem]"
+               alt="Project Image 2">
+        {% endif %}
+      </div>
+      {% if project.dataset_description %}
+      <section class="mb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dataset & Annotation</h3>
+        <p class="text-gray-700">{{ project.dataset_description }}</p>
+      </section>
+      {% endif %}
+
+      {% if project.model_training %}
+      <section class="mb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Model Training</h3>
+        <p class="text-gray-700">{{ project.model_training }}</p>
+      </section>
+      {% endif %}
+
+      {% if project.sahi_description %}
+      <section class="mb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">SAHI Integration</h3>
+        <p class="text-gray-700">{{ project.sahi_description }}</p>
+      </section>
+      {% endif %}
+
+      <section class="mb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Results</h3>
+        <p class="text-gray-700">{{ project.results }}</p>
+      </section>
+
+      <section class="mb-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Key Learnings</h3>
+        <p class="text-gray-700">{{ project.key_learnings }}</p>
+      </section>
+
+      <!-- Technologies Used -->
+      <section class="mb-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Technologies Used</h3>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc list-inside text-gray-700">
+          {% for tech in project.get_technologies_list %}
+            <li>{{ tech }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <!-- Links -->
+      <div class="flex gap-4 mt-6">
+        {% if project.project_link %}
+          <a href="{{ project.project_link }}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition">Live Project</a>
+        {% endif %}
+        {% if project.github_link %}
+          <a href="{{ project.github_link }}" target="_blank" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition">GitHub Repo</a>
+        {% endif %}
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<style>
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out both;
+}
+</style>
+
+{% endblock content %}
