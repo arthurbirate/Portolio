@@ -14,7 +14,7 @@ services:
       - key: DEBUG
         value: False
       - key: ALLOWED_HOSTS
-        value: arthurportfolio.onrender.com,portfolio-37nz.onrender.com
+        value: arthurportfolio.onrender.com,portfolio-ti7o.onrender.com
       - key: DATABASE_URL
         value: postgresql://birate:r7ojiZnnRxB4iHis3hawbmX0Qpp19cIJ@dpg-d0u4f7mmcj7s739anhjg-a/portfolio_db_hll9
       - key: CLOUDINARY_URL

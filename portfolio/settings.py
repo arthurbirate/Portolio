@@ -71,7 +71,7 @@ SECRET_KEY = 'django-insecure-!ma(^^0$#=dx(=mj@rt7(i=(_3boyhv0maj!@%h(z(0#5lbe4_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "https://portfolio-ti7o.onrender.com").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "portfolio-ti7o.onrender.com").split(",")
 
 
 TAILWIND_APP_NAME = 'theme'
