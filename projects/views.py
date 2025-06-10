@@ -12,7 +12,7 @@ def add_project(request):
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('projects')  # Change to your project list URL name
+            return redirect('projects')  
     else:
         form = ProjectForm()
     return render(request, 'projects/add_project.html', {'form': form})
@@ -24,8 +24,7 @@ def edit_project(request, pk):
         form = ProjectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             form.save()
-            return redirect('projects')  # Update with your project list view name
-    else:
+            return redirect('projects')  
         form = ProjectForm(instance=project)
     
     return render(request, 'projects/edit_project.html', {'form': form, 'project': project})
