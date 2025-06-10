@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="max-w-4xl mx-auto mt-20 py-10 px-6 bg-white rounded-xl shadow-lg animate-fade-in-up">
+    <h1 class="text-3xl font-bold text-center text-emerald-800 mb-6">Edit Project</h1>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-center">
+            <button type="submit" class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition">
+                Save Changes
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out both;
+}
+</style>
+
+{% endblock %}

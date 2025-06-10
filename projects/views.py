@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .forms import ProjectForm
 from .models import Project
 
@@ -16,3 +16,16 @@ def add_project(request):
     else:
         form = ProjectForm()
     return render(request, 'projects/add_project.html', {'form': form})
+
+def edit_project(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('projects')  # Update with your project list view name
+    else:
+        form = ProjectForm(instance=project)
+    
+    return render(request, 'projects/edit_project.html', {'form': form, 'project': project})
