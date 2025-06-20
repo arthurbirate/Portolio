@@ -7,7 +7,6 @@
 
     <h1 class="text-5xl font-extrabold text-center text-emerald-800 mb-12 tracking-tight">Projects & Achievements</h1>
 
-    <!-- Overview table -->
     <div class="mb-16 bg-white rounded-3xl shadow-lg p-8">
       <h2 class="text-3xl font-bold text-emerald-700 mb-6 text-center">Project Overview</h2>
       <div class="overflow-x-auto">
@@ -17,21 +16,17 @@
               <th class="py-3 px-6 text-left">Project</th>
               <th class="py-3 px-6 text-left">Type</th>
               <th class="py-3 px-6 text-left">Tool</th>
-              <th class="py-3 px-6 text-left">Link</th>
+              <th class="py-3 px-6 text-left">Details</th>
             </tr>
           </thead>
           <tbody>
             {% for project in projects %}
             <tr class="border-b">
               <td class="py-3 px-6">{{ project.title }}</td>
-              <td class="py-3 px-6">{{ project.project_type }}</td> <!-- You may need to add project_type to your model -->
-              <td class="py-3 px-6">{{ project.tool_used }}</td> <!-- You may need to add tool_used to your model -->
+              <td class="py-3 px-6">{{ project.project_type }}</td>
+              <td class="py-3 px-6">{{ project.tool_used }}</td>
               <td class="py-3 px-6">
-                {% if project.project_link %}
-                  <a href="{{ project.project_link }}" target="_blank" class="text-emerald-700 font-semibold underline">View</a>
-                {% else %}
-                  N/A
-                {% endif %}
+                <a href="{% url 'project_detail' project.id %}" class="text-emerald-700 font-semibold underline">View Details</a>
               </td>
             </tr>
             {% endfor %}
@@ -39,93 +34,6 @@
         </table>
       </div>
     </div>
-
-    <!-- Individual Projects -->
-    {% for project in projects %}
-    <div class="mb-20 p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition">
-
-      <h2 class="text-3xl font-bold text-emerald-700 mb-6">{{ project.title }}</h2>
-
-      <section class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Objective</h3>
-        <p class="text-gray-700">{{ project.objective }}</p>
-      </section>
-
-      <section class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Audience & Context</h3>
-        <p class="text-gray-700">{{ project.context }}</p> <!-- You may need to add context field to model -->
-      </section>
-
-      <section class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Added Value</h3>
-        <p class="text-gray-700">{{ project.added_value }}</p> <!-- New field -->
-      </section>
-
-      <section class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Challenges & Solutions</h3>
-        <p class="text-gray-700">{{ project.challenges }}</p> <!-- New field -->
-      </section>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {% if project.image1 %}
-          <img src="{{ project.image1.url }}" class="rounded-xl shadow-md object-cover w-full h-auto" alt="Project Image 1">
-        {% endif %}
-        {% if project.image2 %}
-          <img src="{{ project.image2.url }}" class="rounded-xl shadow-md object-cover w-full h-auto" alt="Project Image 2">
-        {% endif %}
-      </div>
-
-      {% if project.dataset_description %}
-      <section class="mb-4">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dataset & Annotation</h3>
-        <p class="text-gray-700">{{ project.dataset_description }}</p>
-      </section>
-      {% endif %}
-
-      {% if project.model_training %}
-      <section class="mb-4">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Model Training</h3>
-        <p class="text-gray-700">{{ project.model_training }}</p>
-      </section>
-      {% endif %}
-
-      {% if project.sahi_description %}
-      <section class="mb-4">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">SAHI Integration</h3>
-        <p class="text-gray-700">{{ project.sahi_description }}</p>
-      </section>
-      {% endif %}
-
-      <section class="mb-4">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Results</h3>
-        <p class="text-gray-700">{{ project.results }}</p>
-      </section>
-
-      <section class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Key Learnings</h3>
-        <p class="text-gray-700">{{ project.key_learnings }}</p>
-      </section>
-
-      <section class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Technologies Used</h3>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc list-inside text-gray-700">
-          {% for tech in project.get_technologies_list %}
-            <li>{{ tech }}</li>
-          {% endfor %}
-        </ul>
-      </section>
-
-      <div class="flex gap-4 mt-6">
-        {% if project.project_link %}
-          <a href="{{ project.project_link }}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition">Live Project</a>
-        {% endif %}
-        {% if project.github_link %}
-          <a href="{{ project.github_link }}" target="_blank" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition">GitHub Repo</a>
-        {% endif %}
-      </div>
-
-    </div>
-    {% endfor %}
 
   </div>
 </div>
