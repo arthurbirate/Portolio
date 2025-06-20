@@ -2,39 +2,38 @@
 {% load static %}
 {% block content %}
 
-<div class="w-full bg-white py-16 px-4 animate-fade-in-up">
+<div class="w-full bg-white py-16 px-4">
   <div class="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-full">
 
     <!-- Image -->
     <div class="flex justify-center lg:justify-start w-full lg:w-1/2">
       <img src="{% static 'profile/profileArthur.png' %}" 
       alt="Profile Picture"
-      class="rounded-full shadow-2xl border-4 border-teal-500 w-64 h-64 object-cover hover:scale-105 transition duration-500 ease-in-out" 
+      class="rounded-full shadow-2xl border-4 border-teal-500 w-80 h-80 object-cover" 
       loading="lazy">
- 
     </div>
 
     <!-- Content -->
-    <div class="lg:w-3/5 w-full px-4">
-      <h1 class="text-5xl font-extrabold text-teal-700 leading-tight tracking-wide animate-fade-in-up delay-200 font-serif">
+    <div class="lg:w-7/12 w-full px-4">
+      <h1 class="text-5xl font-extrabold text-teal-700 leading-tight tracking-wide font-serif">
         {{ about.full_name }}
       </h1>
 
-      <p class="text-xl text-gray-700 mt-3 font-medium animate-fade-in-up delay-300">
+      <p class="text-xl text-gray-700 mt-3 font-medium">
         {{ about.title }}
       </p>
 
-      <section class="mt-8 animate-fade-in-up delay-400">
+      <section class="mt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Biography</h2>
         <p class="text-gray-700 leading-relaxed whitespace-pre-line font-light">{{ about.biography }}</p>
       </section>
 
-      <section class="mt-8 animate-fade-in-up delay-500">
+      <section class="mt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Passions</h2>
         <p class="text-gray-700 leading-relaxed whitespace-pre-line font-light">{{ about.passions }}</p>
       </section>
 
-      <section class="mt-8 animate-fade-in-up delay-600">
+      <section class="mt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Academic Background</h2>
         <ul class="list-disc list-inside text-gray-700 font-light">
           {% if about.studied_in_china %}
@@ -46,13 +45,13 @@
         </ul>
       </section>
 
-      <section class="mt-8 animate-fade-in-up delay-700">
+      <section class="mt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Languages</h2>
         <p class="text-gray-700 font-light">Native: {{ about.native_language }}</p>
         <p class="text-gray-700 font-light">Fluent: {{ about.fluent_languages }}</p>
       </section>
 
-      <section class="mt-8 animate-fade-in-up delay-800">
+      <section class="mt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Key Strengths</h2>
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 font-light list-disc list-inside">
           {% for item in about.get_strengths_list %}
@@ -63,32 +62,12 @@
         </ul>
       </section>
 
-      <div class="mt-10 animate-fade-in-up delay-900">
-        <a href="{% static 'docs/Arthur_CV.pdf' %}" download class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition">Download CV</a>
+      <div class="mt-10">
+        <a href="{% static 'docs/Arthur_CV.pdf' %}" target="_blank" download class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition">Download CV</a>
       </div>
     </div>
 
   </div>
 </div>
-
-<!-- Animation Styling -->
-<style>
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out both;
-}
-.font-serif {
-  font-family: 'Merriweather', serif;
-}
-</style>
 
 {% endblock content %}
