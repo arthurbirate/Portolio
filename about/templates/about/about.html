@@ -2,73 +2,74 @@
 {% load static %}
 {% block content %}
 
-<div class="w-full bg-white py-16 px-4">
-  <div class="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-6xl mx-auto">
+<div class="w-full bg-gradient-to-br from-blue-50 via-white to-emerald-100 py-24 px-6 font-serif">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
 
-    <!-- Image -->
-    <div class="flex justify-center lg:justify-start w-full lg:w-5/12">
-      <div class="relative w-72 h-72">
+    <!-- Image Section (rectangle image, clean) -->
+    <div class="w-full lg:w-4/12 flex justify-center">
+      <div class="overflow-hidden rounded-2xl shadow-xl border-4 border-teal-500 w-full max-w-xs">
         <img src="{% static 'profile/profileArthur.webp' %}" 
              alt="Profile Picture"
-             class="rounded-full border-4 border-teal-500 object-cover object-center w-full h-full shadow-lg"
+             class="object-cover w-full h-full object-center"
              loading="lazy">
       </div>
     </div>
 
-    <!-- Content -->
-    <div class="lg:w-7/12 w-full px-4">
-      <h1 class="text-5xl font-extrabold text-teal-700 leading-tight tracking-wide font-serif">
-        {{ about.full_name }}
-      </h1>
+    <!-- Content Section -->
+    <div class="w-full lg:w-8/12">
+      <h1 class="text-5xl font-extrabold text-teal-700 tracking-tight mb-6">{{ about.full_name }}</h1>
+      <p class="text-xl text-gray-600 mb-8">{{ about.title }}</p>
 
-      <p class="text-xl text-gray-700 mt-3 font-medium">
-        {{ about.title }}
-      </p>
+      <div class="space-y-8">
 
-      <section class="mt-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Biography</h2>
-        <p class="text-gray-700 leading-relaxed whitespace-pre-line font-light">{{ about.biography }}</p>
-      </section>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">Biography</h2>
+          <p class="text-gray-700 leading-relaxed whitespace-pre-line">{{ about.biography }}</p>
+        </div>
 
-      <section class="mt-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Passions</h2>
-        <p class="text-gray-700 leading-relaxed whitespace-pre-line font-light">{{ about.passions }}</p>
-      </section>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">Passions</h2>
+          <p class="text-gray-700 leading-relaxed whitespace-pre-line">{{ about.passions }}</p>
+        </div>
 
-      <section class="mt-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Academic Background</h2>
-        <ul class="list-disc list-inside text-gray-700 font-light">
-          {% if about.studied_in_china %}
-            <li>Studied {{ about.chinese_degree }} in China</li>
-          {% endif %}
-          {% if about.studied_in_belgium %}
-            <li>Pursued {{ about.belgian_degree }} in Belgium at {{ about.belgian_institution }}</li>
-          {% endif %}
-        </ul>
-      </section>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">Academic Background</h2>
+          <ul class="list-disc list-inside text-gray-700">
+            {% if about.studied_in_china %}
+              <li>Studied {{ about.chinese_degree }} in China</li>
+            {% endif %}
+            {% if about.studied_in_belgium %}
+              <li>Pursued {{ about.belgian_degree }} in Belgium at {{ about.belgian_institution }}</li>
+            {% endif %}
+          </ul>
+        </div>
 
-      <section class="mt-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Languages</h2>
-        <p class="text-gray-700 font-light">Native: {{ about.native_language }}</p>
-        <p class="text-gray-700 font-light">Fluent: {{ about.fluent_languages }}</p>
-      </section>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">Languages</h2>
+          <p class="text-gray-700">Native: {{ about.native_language }}</p>
+          <p class="text-gray-700">Fluent: {{ about.fluent_languages }}</p>
+        </div>
 
-      <section class="mt-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2 font-serif">Key Strengths</h2>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 font-light list-disc list-inside">
-          {% for item in about.get_strengths_list %}
-            <li class="bg-teal-50 px-4 py-2 rounded-lg shadow-sm hover:bg-teal-100 transition">{{ item }}</li>
-          {% empty %}
-            <li class="text-gray-500 italic">No strengths listed.</li>
-          {% endfor %}
-        </ul>
-      </section>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Key Strengths</h2>
+          <div class="flex flex-wrap gap-3">
+            {% for item in about.get_strengths_list %}
+              <span class="bg-teal-100 text-teal-800 px-4 py-2 rounded-full shadow-sm text-sm">{{ item }}</span>
+            {% empty %}
+              <span class="text-gray-500 italic">No strengths listed.</span>
+            {% endfor %}
+          </div>
+        </div>
 
-      <div class="mt-10">
-        <a href="{% static 'docs/Arthur_CV.pdf' %}" target="_blank" download class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition">
-          Download CV
-        </a>
+        <div class="mt-10">
+          <a href="{% static 'docs/Arthur_CV.pdf' %}" target="_blank" download 
+             class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition">
+            Download CV
+          </a>
+        </div>
+
       </div>
+
     </div>
 
   </div>
