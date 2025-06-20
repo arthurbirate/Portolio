@@ -2,37 +2,79 @@
 {% load static %}
 {% block content %}
 
-<div class="w-full pt-20 font-serif bg-gradient-to-br from-blue-50 via-white to-emerald-100 animate-fade-in-up">
+<div class="w-full pt-20 font-serif bg-gradient-to-br from-blue-50 via-white to-emerald-100">
   <div class="max-w-6xl mx-auto px-6 py-10">
 
-    <h1 class="text-5xl font-extrabold text-center text-emerald-800 mb-12 tracking-tight">Projects</h1>
+    <h1 class="text-5xl font-extrabold text-center text-emerald-800 mb-12 tracking-tight">Projects & Achievements</h1>
 
+    <!-- Overview table -->
+    <div class="mb-16 bg-white rounded-3xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-emerald-700 mb-6 text-center">Project Overview</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-gray-700">
+          <thead>
+            <tr class="bg-emerald-100">
+              <th class="py-3 px-6 text-left">Project</th>
+              <th class="py-3 px-6 text-left">Type</th>
+              <th class="py-3 px-6 text-left">Tool</th>
+              <th class="py-3 px-6 text-left">Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for project in projects %}
+            <tr class="border-b">
+              <td class="py-3 px-6">{{ project.title }}</td>
+              <td class="py-3 px-6">{{ project.project_type }}</td> <!-- You may need to add project_type to your model -->
+              <td class="py-3 px-6">{{ project.tool_used }}</td> <!-- You may need to add tool_used to your model -->
+              <td class="py-3 px-6">
+                {% if project.project_link %}
+                  <a href="{{ project.project_link }}" target="_blank" class="text-emerald-700 font-semibold underline">View</a>
+                {% else %}
+                  N/A
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Individual Projects -->
     {% for project in projects %}
-    <div class="mb-20 p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition duration-300">
+    <div class="mb-20 p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition">
 
-  
       <h2 class="text-3xl font-bold text-emerald-700 mb-6">{{ project.title }}</h2>
-
 
       <section class="mb-6">
         <h3 class="text-xl font-semibold text-gray-800 mb-2">Objective</h3>
         <p class="text-gray-700">{{ project.objective }}</p>
       </section>
 
+      <section class="mb-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Audience & Context</h3>
+        <p class="text-gray-700">{{ project.context }}</p> <!-- You may need to add context field to model -->
+      </section>
+
+      <section class="mb-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Added Value</h3>
+        <p class="text-gray-700">{{ project.added_value }}</p> <!-- New field -->
+      </section>
+
+      <section class="mb-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Challenges & Solutions</h3>
+        <p class="text-gray-700">{{ project.challenges }}</p> <!-- New field -->
+      </section>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {% if project.image1 %}
-          <img src="{{ project.image1.url }}"
-               class="rounded-xl shadow-md object-cover w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[30rem]"
-               alt="Project Image 1">
+          <img src="{{ project.image1.url }}" class="rounded-xl shadow-md object-cover w-full h-auto" alt="Project Image 1">
         {% endif %}
-      
         {% if project.image2 %}
-          <img src="{{ project.image2.url }}"
-               class="rounded-xl shadow-md object-cover w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[30rem]"
-               alt="Project Image 2">
+          <img src="{{ project.image2.url }}" class="rounded-xl shadow-md object-cover w-full h-auto" alt="Project Image 2">
         {% endif %}
       </div>
+
       {% if project.dataset_description %}
       <section class="mb-4">
         <h3 class="text-xl font-semibold text-gray-800 mb-2">Dataset & Annotation</h3>
@@ -64,7 +106,6 @@
         <p class="text-gray-700">{{ project.key_learnings }}</p>
       </section>
 
-
       <section class="mb-6">
         <h3 class="text-xl font-semibold text-gray-800 mb-2">Technologies Used</h3>
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc list-inside text-gray-700">
@@ -73,7 +114,6 @@
           {% endfor %}
         </ul>
       </section>
-
 
       <div class="flex gap-4 mt-6">
         {% if project.project_link %}
@@ -89,21 +129,5 @@
 
   </div>
 </div>
-
-<style>
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animate-fade-in-up {
-  animation: fade-in-up 1s ease-out both;
-}
-</style>
 
 {% endblock content %}
