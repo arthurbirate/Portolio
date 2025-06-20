@@ -3,36 +3,39 @@
 {% block content %}
 
 <div class="w-full pt-20 font-serif bg-gradient-to-br from-blue-50 via-white to-emerald-100">
-  <div class="max-w-6xl mx-auto px-6 py-10">
+  <div class="max-w-7xl mx-auto px-6 py-10">
 
-    <h1 class="text-5xl font-extrabold text-center text-emerald-800 mb-12 tracking-tight">Projects & Achievements</h1>
+    <h1 class="text-5xl font-extrabold text-center text-emerald-800 mb-16 tracking-tight">Projects & Achievements</h1>
 
-    <div class="mb-16 bg-white rounded-3xl shadow-lg p-8">
-      <h2 class="text-3xl font-bold text-emerald-700 mb-6 text-center">Project Overview</h2>
-      <div class="overflow-x-auto">
-        <table class="min-w-full text-gray-700">
-          <thead>
-            <tr class="bg-emerald-100">
-              <th class="py-3 px-6 text-left">Project</th>
-              <th class="py-3 px-6 text-left">Type</th>
-              <th class="py-3 px-6 text-left">Tool</th>
-              <th class="py-3 px-6 text-left">Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for project in projects %}
-            <tr class="border-b">
-              <td class="py-3 px-6">{{ project.title }}</td>
-              <td class="py-3 px-6">{{ project.project_type }}</td>
-              <td class="py-3 px-6">{{ project.tool_used }}</td>
-              <td class="py-3 px-6">
-           
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      {% for project in projects %}
+      <div class="bg-white rounded-3xl shadow-lg p-6 flex flex-col justify-between hover:shadow-2xl transition duration-300">
+
+        <!-- Optional project image -->
+        {% if project.image1 %}
+        <div class="mb-4">
+          <img src="{{ project.image1.url }}" class="rounded-xl object-cover w-full h-48 shadow-md" alt="{{ project.title }}">
+        </div>
+        {% endif %}
+
+        <!-- Project Title -->
+        <h2 class="text-2xl font-bold text-emerald-700 mb-2">{{ project.title }}</h2>
+
+        <!-- Project Type & Tool -->
+        <p class="text-gray-600 mb-1"><strong>Type:</strong> {{ project.project_type }}</p>
+        <p class="text-gray-600 mb-4"><strong>Tool:</strong> {{ project.tool_used }}</p>
+
+        <!-- Details button -->
+        <div class="mt-auto">
+          <a href="{% url 'project_detail' project.id %}" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-xl shadow-md transition">
+            View Details
+          </a>
+        </div>
+
       </div>
+      {% endfor %}
+
     </div>
 
   </div>
